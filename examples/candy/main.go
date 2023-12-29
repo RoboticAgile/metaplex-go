@@ -314,7 +314,7 @@ func main() {
 			)
 			Ln("ok----")
 			if true {
-				resp, err := rpcClient.GetAccountInfo(context.Background(), mint.PublicKey())
+				resp, err := rpcClient.GetAccountInfo(mint.PublicKey())
 				if err != nil {
 					panic(err)
 				}
@@ -381,7 +381,7 @@ func (acc *ConfigAndLines) UnmarshalWithDecoder(decoder *bin.Decoder) (err error
 
 // getConfigAccount loads and parses the contents of a `Config` account.
 func getConfigAccount(rpcClient *rpc.Client, configAccountPubkey solana.PublicKey) (*ConfigAndLines, error) {
-	resp, err := rpcClient.GetAccountInfo(context.Background(), configAccountPubkey)
+	resp, err := rpcClient.GetAccountInfo(configAccountPubkey)
 	if err != nil {
 		return nil, err
 	}
@@ -400,7 +400,7 @@ func getConfigAccount(rpcClient *rpc.Client, configAccountPubkey solana.PublicKe
 
 // getCandyMachineAccount loads and parses the contents of a `CandyMachine` account.
 func getCandyMachineAccount(rpcClient *rpc.Client, candyMachineAccountPubkey solana.PublicKey) (*nftCandyMachine.CandyMachine, error) {
-	resp, err := rpcClient.GetAccountInfo(context.Background(), candyMachineAccountPubkey)
+	resp, err := rpcClient.GetAccountInfo(candyMachineAccountPubkey)
 	if err != nil {
 		return nil, err
 	}
@@ -420,7 +420,6 @@ func mustGetMinimumBalanceForRentExemption(
 	dataSize uint64,
 ) uint64 {
 	minBalance, err := rpcClient.GetMinimumBalanceForRentExemption(
-		context.Background(),
 		dataSize,
 		rpc.CommitmentFinalized,
 	)
@@ -439,7 +438,7 @@ func sendTx(
 	instructions []solana.Instruction,
 	signers []solana.PrivateKey,
 ) {
-	recent, err := rpcClient.GetRecentBlockhash(context.Background(), rpc.CommitmentFinalized)
+	recent, err := rpcClient.GetRecentBlockhash(rpc.CommitmentFinalized)
 	if err != nil {
 		panic(err)
 	}
@@ -474,7 +473,6 @@ func sendTx(
 	}
 
 	sig, err := sendAndConfirmTransaction.SendAndConfirmTransaction(
-		context.Background(),
 		rpcClient,
 		wsClient,
 		tx,

@@ -53,14 +53,14 @@ func mint(
 		return solana.Signature{}, err
 	}
 
-	candyMachineRaw, err := client.GetAccountInfo(context.TODO(), candyMachineAddress)
+	candyMachineRaw, err := client.GetAccountInfo(candyMachineAddress)
 	if err != nil {
 		return solana.Signature{}, err
 	}
 
 	signers := []solana.PrivateKey{mint.PrivateKey, userKeyPair}
 
-	min, err := client.GetMinimumBalanceForRentExemption(context.TODO(), token.MINT_SIZE, rpc.CommitmentFinalized)
+	min, err := client.GetMinimumBalanceForRentExemption(token.MINT_SIZE, rpc.CommitmentFinalized)
 	if err != nil {
 		return solana.Signature{}, err
 	}
@@ -155,7 +155,7 @@ func sendTransaction(
 	signers []solana.PrivateKey,
 ) (solana.Signature, error) {
 
-	recent, err := client.GetRecentBlockhash(context.TODO(), rpc.CommitmentFinalized)
+	recent, err := client.GetRecentBlockhash(rpc.CommitmentFinalized)
 	if err != nil {
 		return solana.Signature{}, err
 	}
@@ -185,7 +185,6 @@ func sendTransaction(
 	}
 
 	return sendAndConfirmTransaction.SendAndConfirmTransaction(
-		context.TODO(),
 		client,
 		wsClient,
 		tx,
