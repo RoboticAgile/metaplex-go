@@ -5,7 +5,7 @@ package nft_candy_machine
 import (
 	"fmt"
 	ag_binary "github.com/gagliardetto/binary"
-	ag_solanago "github.com/desperatee/solana-go"
+	ag_solanago "github.com/RoboticAgile/solana-go"
 )
 
 type CandyMachineV2 struct {

@@ -4,17 +4,17 @@ import (
 	"context"
 	"fmt"
 
+	nftcandymachinev2 "github.com/RoboticAgile/metaplex-go/clients/nft-candy-machine-v2"
+	token_metadata "github.com/RoboticAgile/metaplex-go/clients/token-metadata"
+	"github.com/RoboticAgile/solana-go"
+	atok "github.com/RoboticAgile/solana-go/programs/associated-token-account"
+	"github.com/RoboticAgile/solana-go/programs/system"
+	"github.com/RoboticAgile/solana-go/programs/token"
+	"github.com/RoboticAgile/solana-go/rpc"
+	sendAndConfirmTransaction "github.com/RoboticAgile/solana-go/rpc/sendAndConfirmTransaction"
+	"github.com/RoboticAgile/solana-go/rpc/ws"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/desperatee/solana-go"
-	atok "github.com/desperatee/solana-go/programs/associated-token-account"
-	"github.com/desperatee/solana-go/programs/system"
-	"github.com/desperatee/solana-go/programs/token"
-	"github.com/desperatee/solana-go/rpc"
-	sendAndConfirmTransaction "github.com/desperatee/solana-go/rpc/sendAndConfirmTransaction"
-	"github.com/desperatee/solana-go/rpc/ws"
 	bin "github.com/gagliardetto/binary"
-	nftcandymachinev2 "github.com/gagliardetto/metaplex-go/clients/nft-candy-machine-v2"
-	token_metadata "github.com/gagliardetto/metaplex-go/clients/token-metadata"
 )
 
 var candyMachineV2ProgramID = solana.MustPublicKeyFromBase58("cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ")
@@ -47,7 +47,7 @@ func mint(
 
 	mint := solana.NewWallet()
 
-	client := rpc.New(cluster.RPC)
+	client, _ := rpc.New(cluster.RPC)
 	userTokenAccountAddress, err := getTokenWallet(userKeyPair.PublicKey(), mint.PublicKey())
 	if err != nil {
 		return solana.Signature{}, err
@@ -185,6 +185,7 @@ func sendTransaction(
 	}
 
 	return sendAndConfirmTransaction.SendAndConfirmTransaction(
+		context.Background(),
 		client,
 		wsClient,
 		tx,

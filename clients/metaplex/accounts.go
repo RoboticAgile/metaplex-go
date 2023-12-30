@@ -4,7 +4,7 @@ package metaplex
 
 import (
 	ag_binary "github.com/gagliardetto/binary"
-	ag_solanago "github.com/desperatee/solana-go"
+	ag_solanago "github.com/RoboticAgile/solana-go"
 )
 
 type Key ag_binary.BorshEnum

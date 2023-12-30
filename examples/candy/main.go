@@ -6,17 +6,17 @@ import (
 	"fmt"
 	"os"
 
+	nftCandyMachine "github.com/RoboticAgile/metaplex-go/clients/nft-candy-machine"
+	"github.com/RoboticAgile/solana-go"
+	atok "github.com/RoboticAgile/solana-go/programs/associated-token-account"
+	"github.com/RoboticAgile/solana-go/programs/system"
+	"github.com/RoboticAgile/solana-go/programs/token"
+	"github.com/RoboticAgile/solana-go/rpc"
+	sendAndConfirmTransaction "github.com/RoboticAgile/solana-go/rpc/sendAndConfirmTransaction"
+	"github.com/RoboticAgile/solana-go/rpc/ws"
+	"github.com/RoboticAgile/solana-go/text"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/desperatee/solana-go"
-	atok "github.com/desperatee/solana-go/programs/associated-token-account"
-	"github.com/desperatee/solana-go/programs/system"
-	"github.com/desperatee/solana-go/programs/token"
-	"github.com/desperatee/solana-go/rpc"
-	sendAndConfirmTransaction "github.com/desperatee/solana-go/rpc/sendAndConfirmTransaction"
-	"github.com/desperatee/solana-go/rpc/ws"
-	"github.com/desperatee/solana-go/text"
 	bin "github.com/gagliardetto/binary"
-	nftCandyMachine "github.com/gagliardetto/metaplex-go/clients/nft-candy-machine"
 	. "github.com/gagliardetto/utilz"
 )
 
@@ -114,7 +114,7 @@ func main() {
 	nftCandyMachine.SetProgramID(candyMachineProgram)
 
 	// Create a new RPC client:
-	rpcClient := rpc.New(rpc.LocalNet_RPC)
+	rpcClient, _ := rpc.New(rpc.LocalNet_RPC)
 
 	// Create a new WS client (used for confirming transactions)
 	wsClient, err := ws.Connect(context.Background(), rpc.LocalNet_WS)
@@ -473,6 +473,7 @@ func sendTx(
 	}
 
 	sig, err := sendAndConfirmTransaction.SendAndConfirmTransaction(
+		context.Background(),
 		rpcClient,
 		wsClient,
 		tx,
