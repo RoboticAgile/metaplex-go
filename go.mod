@@ -3,7 +3,7 @@ module github.com/RoboticAgile/metaplex-go
 go 1.21.1
 
 require (
-	github.com/RoboticAgile/solana-go v0.0.0-20231230034204-4630826a3be3
+	github.com/RoboticAgile/solana-go v0.0.2
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 	github.com/gagliardetto/binary v0.7.9
 	github.com/gagliardetto/gofuzz v1.2.2
@@ -59,4 +59,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/gagliardetto/metaplex-go => github.com/RoboticAgile/metaplex-go v0.0.2
+replace github.com/gagliardetto/metaplex-go => github.com/RoboticAgile/metaplex-go v0.0.3
