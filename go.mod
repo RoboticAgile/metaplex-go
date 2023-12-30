@@ -7,7 +7,6 @@ require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 	github.com/gagliardetto/binary v0.7.9
 	github.com/gagliardetto/gofuzz v1.2.2
-	github.com/gagliardetto/metaplex-go v0.0.0-00010101000000-000000000000
 	github.com/gagliardetto/treeout v0.1.4
 	github.com/gagliardetto/utilz v0.1.1
 	github.com/stretchr/testify v1.8.4
@@ -21,7 +20,6 @@ require (
 	github.com/blendle/zapdriver v1.3.1 // indirect
 	github.com/buger/goterm v0.0.0-20200322175922-2f3e71b85129 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/desperatee/solana-go v0.0.0-20220801031225-c97d8d81ee87 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/gorilla/rpc v1.2.1 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
@@ -61,4 +59,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/gagliardetto/metaplex-go => github.com/RoboticAgile/metaplex-go v0.0.1
+replace github.com/gagliardetto/metaplex-go => github.com/RoboticAgile/metaplex-go v0.0.2
