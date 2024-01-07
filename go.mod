@@ -59,4 +59,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/gagliardetto/metaplex-go => github.com/RoboticAgile/metaplex-go v0.0.4
+replace github.com/gagliardetto/metaplex-go => github.com/RoboticAgile/metaplex-go v0.0.5
